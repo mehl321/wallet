@@ -1,0 +1,8 @@
+.main-wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.smaller {
+  font-size: 0.9em
+}
