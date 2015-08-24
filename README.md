@@ -1,5 +1,9 @@
 # Wallet
 
+<p align="center">
+  <img src="screenshot.png" alt="Wallet">
+</p>
+
 A nice little wallet app built with React.
 
 The responsive design was implemented with [React-Bootstrap](http://react-bootstrap.github.io/).
