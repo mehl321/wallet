@@ -4,7 +4,7 @@
   <img src="screenshot.png" alt="Wallet">
 </p>
 
-A nice little wallet app built with React.
+A nice little wallet app built with React. Deployed at https://code.soulas.net/wallet/.
 
 The responsive design was implemented with [React-Bootstrap](http://react-bootstrap.github.io/).
 

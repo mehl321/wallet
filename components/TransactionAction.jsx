@@ -20,19 +20,26 @@ let TransactionAction = React.createClass({
     };
   },
 
-  // amount valid if number
-  // impossible to withdraw more than the amount of the balance
-  amountIsValid(amount, type) {
+  // check amount not null number
+  // impossible to withdraw more than balance amount
+  isAmountValid(amount, type) {
     let amountRegex = /^\d*(\.\d*){0,1}$/;
 
-    return (amountRegex.test(amount) && type === 'deposit') ||
-      (amountRegex.test(amount) && type === 'withdrawal' && amount <= this.props.balance);
+    if (amountRegex.test(amount) && accounting.unformat(amount) > 0) {
+      return type === 'deposit' ||
+        (type === 'withdrawal' && amount <= this.props.balance);
+    } else {
+      return false;
+    }
+
   },
 
-  // return 'error' if entered amount invalid, for UI feedback
-  validationState(type) {
+  // return 'error' if an amount has been entered but is invalid
+  handleValidAmountStyling(type) {
     let typeName = type + 'Value';
-    if (this.state[typeName] && !this.amountIsValid(this.state[typeName], type)) {
+    let fieldValue = this.state[typeName];
+
+    if (fieldValue && !this.isAmountValid(fieldValue, type)) {
       return 'error';
     }
   },
@@ -41,7 +48,7 @@ let TransactionAction = React.createClass({
   handleKeyboard(type, e) {
     let typeName = type + 'Value';
 
-    if (e.which === 13 && this.amountIsValid(this.state[typeName], type)) {
+    if (e.which === 13 && this.isAmountValid(this.state[typeName], type)) {
       this.handleNewTransaction(type);
     }
   },
@@ -89,7 +96,7 @@ let TransactionAction = React.createClass({
             <Input
               type="text"
               value={this.state.depositValue}
-              bsStyle={this.validationState('deposit')}
+              bsStyle={this.handleValidAmountStyling('deposit')}
               ref="depositInput"
               addonBefore={<i className={classesCurrency}></i>}
               onChange={this.handleChange.bind(this, 'deposit')}
@@ -97,7 +104,7 @@ let TransactionAction = React.createClass({
               buttonAfter={
                 <Button
                   href="#"
-                  disabled={!this.amountIsValid(this.state.depositValue, 'deposit')}
+                  disabled={!this.isAmountValid(this.state.depositValue, 'deposit')}
                   onClick={this.handleNewTransaction.bind(this, 'deposit')}>
                   <i className="fa fa-plus text-success"></i>
                 </Button>
@@ -111,7 +118,7 @@ let TransactionAction = React.createClass({
             <Input
               type="text"
               value={this.state.withdrawalValue}
-              bsStyle={this.validationState('withdrawal')}
+              bsStyle={this.handleValidAmountStyling('withdrawal')}
               ref="withdrawalInput"
               addonBefore={<i className={classesCurrency}></i>}
               onChange={this.handleChange.bind(this, 'withdrawal')}
@@ -119,7 +126,7 @@ let TransactionAction = React.createClass({
               buttonAfter={
                 <Button
                   href="#"
-                  disabled={!this.amountIsValid(this.state.withdrawalValue, 'withdrawal')}
+                  disabled={!this.isAmountValid(this.state.withdrawalValue, 'withdrawal')}
                   onClick={this.handleNewTransaction.bind(this, 'withdrawal')}>
                   <i className="fa fa-minus text-danger"></i>
                 </Button>
