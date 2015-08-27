@@ -84,7 +84,7 @@ let App = React.createClass({
       <div>
         <MainMenu onResetClick={this.handleReset}></MainMenu>
 
-        <div className="main-wrapper">
+        <div className="main-wrapper container">
           <CurrencySelection currency={this.state.currency} onCurrencyChange={this.handleCurrencyChange}>
           </CurrencySelection>
 
