@@ -1,5 +1,7 @@
 let React = require('react');
 
+let classNames = require('classnames');
+
 let ReactBootstrap = require('react-bootstrap');
 let ButtonGroup = ReactBootstrap.ButtonGroup;
 let Button = ReactBootstrap.Button;
@@ -11,31 +13,26 @@ let CurrencySelection = React.createClass({
     this.props.onCurrencyChange(currency);
   },
 
-  render() {
-    // TODO: Create a CurrencySelector component
+  renderCurrencyButton(currencyButton, currentCurrency) {
+    let faCurrency = 'fa-' + currencyButton.toLowerCase();
+    let classesCurrency = classNames('fa', 'fa-fw', faCurrency);
 
+    return(
+      <Button active={currentCurrency === currencyButton}
+        href='#'
+        onClick={this.handleClick.bind(this, currencyButton)}
+      >
+        <i className={classesCurrency}></i> {currencyButton}
+      </Button>
+    );
+  },
+
+  render() {
     return (
       <ButtonGroup justified>
-        <Button active={this.props.currency === 'GBP'}
-          href='#'
-          onClick={this.handleClick.bind(this, 'GBP')}
-        >
-          <i className="fa fa-gbp fa-fw"></i> GBP
-        </Button>
-
-        <Button active={this.props.currency === 'EUR'}
-          href='#'
-          onClick={this.handleClick.bind(this, 'EUR')}
-        >
-          <i className="fa fa-eur fa-fw"></i> EUR
-        </Button>
-
-        <Button active={this.props.currency === 'BTC'}
-          href='#'
-          onClick={this.handleClick.bind(this, 'BTC')}
-        >
-          <i className="fa fa-btc fa-fw"></i> BTC
-        </Button>
+        {this.renderCurrencyButton('GBP', this.props.currency)}
+        {this.renderCurrencyButton('EUR', this.props.currency)}
+        {this.renderCurrencyButton('BTC', this.props.currency)}
       </ButtonGroup>
     );
   }
