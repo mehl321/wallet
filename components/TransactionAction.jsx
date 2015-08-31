@@ -10,6 +10,9 @@ let Col = ReactBootstrap.Col;
 let Input = ReactBootstrap.Input;
 let Button = ReactBootstrap.Button;
 
+const DEPOSIT = 'deposit';
+const WITHDRAWAL = 'withdrawal';
+
 // component to deposit or withdraw money
 let TransactionAction = React.createClass({
 
@@ -26,8 +29,8 @@ let TransactionAction = React.createClass({
     let amountRegex = /^\d*(\.\d*){0,1}$/;
 
     if (amountRegex.test(amount) && accounting.unformat(amount) > 0) {
-      return type === 'deposit' ||
-        (type === 'withdrawal' && amount <= this.props.balance);
+      return type === DEPOSIT ||
+        (type === WITHDRAWAL && amount <= this.props.balance);
     } else {
       return false;
     }
@@ -80,7 +83,7 @@ let TransactionAction = React.createClass({
 
     // add negative sign for withdrawals
     let amount = accounting.unformat(this.refs[refName].getValue());
-    transaction.amount = type === 'deposit' ? amount : -1 * amount
+    transaction.amount = type === DEPOSIT ? amount : -1 * amount
 
     this.props.onNewTransaction(transaction);
   },
@@ -96,16 +99,16 @@ let TransactionAction = React.createClass({
             <Input
               type="text"
               value={this.state.depositValue}
-              bsStyle={this.handleValidAmountStyling('deposit')}
+              bsStyle={this.handleValidAmountStyling(DEPOSIT)}
               ref="depositInput"
               addonBefore={<i className={classesCurrency}></i>}
-              onChange={this.handleChange.bind(this, 'deposit')}
-              onKeyDown={this.handleKeyboard.bind(this, 'deposit')}
+              onChange={this.handleChange.bind(this, DEPOSIT)}
+              onKeyDown={this.handleKeyboard.bind(this, DEPOSIT)}
               buttonAfter={
                 <Button
                   href="#"
-                  disabled={!this.isAmountValid(this.state.depositValue, 'deposit')}
-                  onClick={this.handleNewTransaction.bind(this, 'deposit')}>
+                  disabled={!this.isAmountValid(this.state.depositValue, DEPOSIT)}
+                  onClick={this.handleNewTransaction.bind(this, DEPOSIT)}>
                   <i className="fa fa-plus text-success"></i>
                 </Button>
               }
@@ -118,16 +121,16 @@ let TransactionAction = React.createClass({
             <Input
               type="text"
               value={this.state.withdrawalValue}
-              bsStyle={this.handleValidAmountStyling('withdrawal')}
+              bsStyle={this.handleValidAmountStyling(WITHDRAWAL)}
               ref="withdrawalInput"
               addonBefore={<i className={classesCurrency}></i>}
-              onChange={this.handleChange.bind(this, 'withdrawal')}
-              onKeyDown={this.handleKeyboard.bind(this, 'withdrawal')}
+              onChange={this.handleChange.bind(this, WITHDRAWAL)}
+              onKeyDown={this.handleKeyboard.bind(this, WITHDRAWAL)}
               buttonAfter={
                 <Button
                   href="#"
-                  disabled={!this.isAmountValid(this.state.withdrawalValue, 'withdrawal')}
-                  onClick={this.handleNewTransaction.bind(this, 'withdrawal')}>
+                  disabled={!this.isAmountValid(this.state.withdrawalValue, WITHDRAWAL)}
+                  onClick={this.handleNewTransaction.bind(this, WITHDRAWAL)}>
                   <i className="fa fa-minus text-danger"></i>
                 </Button>
               }
