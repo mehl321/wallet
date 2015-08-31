@@ -12,8 +12,8 @@ let TransactionHistory = React.createClass({
     let transactions = this.props.transactions.map((t, i) => {
       return (
         <TransactionItem
-          key={this.props.transactions.length - i - 1}
-          number={this.props.transactions.length - i}
+          key={this.props.transactions.size - i - 1}
+          number={this.props.transactions.size - i}
           amount={t.amount}
           currency={t.currency}
           timestamp={t.timestamp}
@@ -23,29 +23,27 @@ let TransactionHistory = React.createClass({
     });
 
     // if no transactions, don't display an empty HTML table
-    let returnValue = false;
-
-    if (transactions.length > 0) {
-      returnValue = (
-        <Table bordered>
-
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Amount</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {transactions}
-          </tbody>
-
-        </Table>
-      );
+    if (transactions.size === 0) {
+      return null;
     }
 
-    return returnValue;
+    return (
+      <Table bordered>
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Amount</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {transactions}
+        </tbody>
+
+      </Table>
+    );
   }
 
 });

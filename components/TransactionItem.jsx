@@ -12,10 +12,11 @@ let TransactionItem = React.createClass({
     let faCurrency = 'fa-' + this.props.currency.toLowerCase();
     let classesCurrency = classNames('fa', faCurrency);
 
-    if (this.props.amount > 0)
+    if (this.props.amount > 0) {
       typeClass = "success";
-    else
+    } else {
       typeClass = "danger";
+    }
 
     return (
       <tr className={typeClass}>

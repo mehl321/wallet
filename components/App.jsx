@@ -1,4 +1,5 @@
 let React = require('react');
+let Immutable= require('immutable');
 let fx = require('money');
 
 let MainMenu = require('./MainMenu');
@@ -17,8 +18,12 @@ fx.rates = {
 let App = React.createClass({
 
   getInitialState() {
+
+    let transactions = localStorage.transactions ?
+      Immutable.List(JSON.parse(localStorage.transactions)) :
+      Immutable.List();
+
     let currency = localStorage.currency ? JSON.parse(localStorage.currency) : 'GBP';
-    let transactions = localStorage.transactions ? JSON.parse(localStorage.transactions) : [];
     let balance = this.getNewBalance(transactions, currency);
 
     return {
@@ -52,8 +57,7 @@ let App = React.createClass({
   handleNewTransaction(transaction) {
     transaction.currency = this.state.currency;
 
-    let transacs = this.state.transactions;
-    transacs.unshift(transaction);
+    let transacs = this.state.transactions.unshift(transaction);
 
     let balance = this.getNewBalance(transacs, this.state.currency);
 
@@ -62,7 +66,7 @@ let App = React.createClass({
       balance: balance,
     });
 
-    localStorage.transactions = JSON.stringify(transacs);
+    localStorage.transactions = JSON.stringify(transacs.toJS());
   },
 
   // return recalculated balance

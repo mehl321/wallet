@@ -48,7 +48,7 @@ let TransactionAction = React.createClass({
   handleKeyboard(type, e) {
     let typeName = type + 'Value';
 
-    if (e.which === 13 && this.isAmountValid(this.state[typeName], type)) {
+    if (e.key === 'Enter' && this.isAmountValid(this.state[typeName], type)) {
       this.handleNewTransaction(type);
     }
   },
