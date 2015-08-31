@@ -33,10 +33,24 @@ let App = React.createClass({
     };
   },
 
-  // reset wallet to its initial state
+  // update local storage when currency, balance or transactions change
+  componentWillUpdate(nextProps, nextState) {
+    if (localStorage.currency !== nextState.currency) {
+      localStorage.currency = JSON.stringify(nextState.currency);
+    }
+
+    if (localStorage.transactions !== nextState.transactions) {
+      localStorage.transactions = JSON.stringify(nextState.transactions.toJS());
+    }
+
+    if (localStorage.balance !== nextState.balance) {
+      localStorage.balance = JSON.stringify(nextState.balance);
+    }
+  },
+
+  // reset everything
   handleReset() {
     localStorage.clear();
-
     this.setState(this.getInitialState());
   },
 
@@ -48,8 +62,6 @@ let App = React.createClass({
       currency: currency,
       balance: balance,
     });
-
-    localStorage.currency = JSON.stringify(currency);
   },
 
   // add and save new transaction
@@ -65,8 +77,6 @@ let App = React.createClass({
       transactions: transacs,
       balance: balance,
     });
-
-    localStorage.transactions = JSON.stringify(transacs.toJS());
   },
 
   // return recalculated balance
