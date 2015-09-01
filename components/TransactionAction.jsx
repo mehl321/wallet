@@ -1,14 +1,9 @@
 let React = require('react');
 
+let {Grid, Row, Col, Input, Button} = require('react-bootstrap');
+
 let classNames = require('classnames');
 let accounting = require('accounting');
-
-let ReactBootstrap = require('react-bootstrap');
-let Grid = ReactBootstrap.Grid;
-let Row = ReactBootstrap.Row;
-let Col = ReactBootstrap.Col;
-let Input = ReactBootstrap.Input;
-let Button = ReactBootstrap.Button;
 
 const DEPOSIT = 'deposit';
 const WITHDRAWAL = 'withdrawal';

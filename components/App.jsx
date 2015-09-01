@@ -81,16 +81,12 @@ let App = React.createClass({
 
   // return recalculated balance
   getNewBalance(transactions, currency) {
-    let balance = 0;
-
-    transactions.forEach((t) => {
-      balance += fx.convert(
-        t.amount,
-        {from: t.currency, to: currency}
+    return transactions.reduce((previous, current) => {
+      return previous + fx.convert(
+        current.amount,
+        {from: current.currency, to: currency}
       );
-    });
-
-    return balance;
+    }, 0);
   },
 
   render() {

@@ -1,7 +1,6 @@
 let React = require('react');
 
-let ReactBootstrap = require('react-bootstrap');
-let Table = ReactBootstrap.Table;
+let {Table} = require('react-bootstrap');
 
 let TransactionItem = require('./TransactionItem');
 
@@ -12,7 +11,7 @@ let TransactionHistory = React.createClass({
     let transactions = this.props.transactions.map((t, i) => {
       return (
         <TransactionItem
-          key={this.props.transactions.size - i - 1}
+          key={i}
           number={this.props.transactions.size - i}
           amount={t.amount}
           currency={t.currency}

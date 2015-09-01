@@ -2,9 +2,7 @@ let React = require('react');
 
 let classNames = require('classnames');
 
-let ReactBootstrap = require('react-bootstrap');
-let ButtonGroup = ReactBootstrap.ButtonGroup;
-let Button = ReactBootstrap.Button;
+let {ButtonGroup, Button} = require('react-bootstrap');
 
 // currency selection component
 let CurrencySelection = React.createClass({

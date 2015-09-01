@@ -1,9 +1,6 @@
 let React = require('react');
 
-let ReactBootstrap = require('react-bootstrap');
-let Nav = ReactBootstrap.Nav;
-let NavItem = ReactBootstrap.NavItem;
-let Navbar = ReactBootstrap.Navbar;
+let {Navbar, Nav, NavItem} = require('react-bootstrap');
 
 // top menu
 let MainMenu = React.createClass({
