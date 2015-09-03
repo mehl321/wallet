@@ -1,13 +1,17 @@
-let React = require('react');
+let React = require('react')
 
-let {Table} = require('react-bootstrap');
+let {Table} = require('react-bootstrap')
 
-let TransactionItem = require('./TransactionItem');
+let TransactionItem = require('./TransactionItem')
 
 // container of the transaction items
 let TransactionHistory = React.createClass({
 
-  render() {
+  propTypes: {
+    transactions: React.PropTypes.object
+  },
+
+  render () {
     let transactions = this.props.transactions.map((t, i) => {
       return (
         <TransactionItem
@@ -16,14 +20,13 @@ let TransactionHistory = React.createClass({
           amount={t.amount}
           currency={t.currency}
           timestamp={t.timestamp}
-        >
-        </TransactionItem>
-      );
-    });
+        />
+      )
+    })
 
     // if no transactions, don't display an empty HTML table
     if (transactions.size === 0) {
-      return null;
+      return null
     }
 
     return (
@@ -42,9 +45,9 @@ let TransactionHistory = React.createClass({
         </tbody>
 
       </Table>
-    );
+    )
   }
 
-});
+})
 
-module.exports = TransactionHistory;
+module.exports = TransactionHistory

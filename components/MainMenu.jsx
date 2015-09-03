@@ -1,10 +1,15 @@
-let React = require('react');
+let React = require('react')
 
-let {Navbar, Nav, NavItem} = require('react-bootstrap');
+let {Navbar, Nav, NavItem} = require('react-bootstrap')
 
 // top menu
 let MainMenu = React.createClass({
-  render() {
+
+  propTypes: {
+    onResetClick: React.PropTypes.func
+  },
+
+  render () {
     return (
       <Navbar brand='Wallet' toggleNavKey={0}>
         <Nav eventKey={0}>
@@ -12,9 +17,9 @@ let MainMenu = React.createClass({
           <NavItem eventKey={3} href='https://github.com/mehl321/wallet/'>View source</NavItem>
         </Nav>
       </Navbar>
-    );
+    )
   }
 
-});
+})
 
-module.exports = MainMenu;
+module.exports = MainMenu
