@@ -1,0 +1,27 @@
+{
+  "name": "Wallet",
+  "version": "0.0.0",
+  "description": "A simple wallet webapp",
+  "main": "main.js",
+  "scripts": {
+    "watch": "watchify -v -d -t babelify main.js --extension=.jsx -o compiled.js",
+    "build": "NODE_ENV=production browserify -t babelify --extension=.jsx main.js | uglifyjs > compiled.js"
+  },
+  "author": "Guilhem Soulas",
+  "license": "MIT",
+  "dependencies": {
+    "accounting": "0.4.1",
+    "classnames": "2.1.3",
+    "immutable": "3.7.4",
+    "moment": "2.10.6",
+    "money": "0.2.0",
+    "react": "0.13.3",
+    "react-bootstrap": "0.24.5"
+  },
+  "devDependencies": {
+    "babelify": "6.2.0",
+    "browserify": "11.0.1",
+    "uglify-js": "2.4.24",
+    "watchify": "3.3.1"
+  }
+}
