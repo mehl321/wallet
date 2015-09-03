@@ -1,15 +1,15 @@
 {
-  "name": "Wallet",
+  "name": "wallet",
   "version": "0.0.0",
   "description": "A simple wallet webapp",
-  "main": "main.js",
-  "scripts": {
-    "watch": "watchify -v -d -t babelify main.js --extension=.jsx -o compiled.js",
-    "build": "NODE_ENV=production browserify -t babelify --extension=.jsx main.js | uglifyjs > compiled.js",
-    "lint": "standard ./**/*.js*"
-  },
+  "main": "app/main.js",
   "author": "Guilhem Soulas",
   "license": "MIT",
+  "scripts": {
+    "watch": "watchify -v -d -t babelify app/main.js --extension=.jsx -o public/compiled.js",
+    "build": "npm run test && NODE_ENV=production browserify -t babelify --extension=.jsx app/main.js | uglifyjs > public/compiled.js",
+    "test": "standard app/**/*.js*"
+  },
   "dependencies": {
     "accounting": "0.4.1",
     "classnames": "2.1.3",

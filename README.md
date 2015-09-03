@@ -20,10 +20,16 @@ cd wallet
 npm install
 ```
 
-To build for production:
+To run tests and build for production:
 
 ```bash
 npm run build
+```
+
+To just run tests:
+
+```bash
+npm run test
 ```
 
 To run in development/watch mode:
