@@ -5,7 +5,7 @@ let {Table} = require('react-bootstrap')
 let TransactionItem = require('./TransactionItem')
 
 // container of the transaction items
-let TransactionHistory = React.createClass({
+module.exports = React.createClass({
 
   propTypes: {
     transactions: React.PropTypes.object
@@ -49,5 +49,3 @@ let TransactionHistory = React.createClass({
   }
 
 })
-
-module.exports = TransactionHistory

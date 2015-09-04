@@ -5,7 +5,7 @@ let classNames = require('classnames')
 let {ButtonGroup, Button} = require('react-bootstrap')
 
 // currency selection component
-let CurrencySelection = React.createClass({
+module.exports = React.createClass({
 
   propTypes: {
     onCurrencyChange: React.PropTypes.func,
@@ -41,5 +41,3 @@ let CurrencySelection = React.createClass({
   }
 
 })
-
-module.exports = CurrencySelection

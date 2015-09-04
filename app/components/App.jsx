@@ -14,8 +14,15 @@ fx.rates = {
   'EUR': 1.36
 }
 
+let style = {
+  mainWrapper: {
+    maxWidth: 400,
+    margin: '0 auto'
+  }
+}
+
 // the App component contains all the other components
-let App = React.createClass({
+module.exports = React.createClass({
 
   getInitialState () {
     let transactions = localStorage.transactions
@@ -93,7 +100,7 @@ let App = React.createClass({
       <div>
         <MainMenu onResetClick={this.handleReset} />
 
-        <div className='main-wrapper container'>
+        <div className='container' style={style.mainWrapper}>
           <CurrencySelection currency={this.state.currency} onCurrencyChange={this.handleCurrencyChange} />
 
           <Balance currency={this.state.currency} balance={this.state.balance} />
@@ -111,5 +118,3 @@ let App = React.createClass({
   }
 
 })
-
-module.exports = App
