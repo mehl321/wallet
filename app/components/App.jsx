@@ -14,12 +14,7 @@ fx.rates = {
   'EUR': 1.36
 }
 
-let style = {
-  mainWrapper: {
-    maxWidth: 400,
-    margin: '0 auto'
-  }
-}
+let style = getStyle()
 
 // the App component contains all the other components
 module.exports = React.createClass({
@@ -116,5 +111,13 @@ module.exports = React.createClass({
       </div>
     )
   }
-
 })
+
+function getStyle () {
+  return {
+    mainWrapper: {
+      maxWidth: 400,
+      margin: '0 auto'
+    }
+  }
+}

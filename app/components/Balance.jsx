@@ -2,11 +2,7 @@ let React = require('react')
 let classNames = require('classnames')
 let accounting = require('accounting')
 
-let style = {
-  smaller: {
-    fontSize: '0.9em'
-  }
-}
+let style = getStyle
 
 // balance display component
 module.exports = React.createClass({
@@ -29,3 +25,11 @@ module.exports = React.createClass({
   }
 
 })
+
+function getStyle () {
+  return {
+    smaller: {
+      fontSize: '0.9em'
+    }
+  }
+}
