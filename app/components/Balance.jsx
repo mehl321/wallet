@@ -2,7 +2,7 @@ let React = require('react')
 let classNames = require('classnames')
 let accounting = require('accounting')
 
-let style = getStyle
+let style = getStyle()
 
 // balance display component
 module.exports = React.createClass({
