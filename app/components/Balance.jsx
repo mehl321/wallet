@@ -2,8 +2,10 @@ let React = require('react')
 let classNames = require('classnames')
 let accounting = require('accounting')
 
+let style = getStyle()
+
 // balance display component
-let Balance = React.createClass({
+module.exports = React.createClass({
 
   propTypes: {
     balance: React.PropTypes.number,
@@ -16,7 +18,7 @@ let Balance = React.createClass({
 
     return (
       <h1 className='lead'>
-        Balance: <span className='smaller'><i className={classesCurrency}></i></span>&nbsp;
+        Balance: <span style={style.smaller}><i className={classesCurrency}></i></span>&nbsp;
         {accounting.formatMoney(this.props.balance, '')}
       </h1>
     )
@@ -24,4 +26,10 @@ let Balance = React.createClass({
 
 })
 
-module.exports = Balance
+function getStyle () {
+  return {
+    smaller: {
+      fontSize: '0.9em'
+    }
+  }
+}

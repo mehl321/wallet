@@ -9,7 +9,7 @@ const DEPOSIT = 'deposit'
 const WITHDRAWAL = 'withdrawal'
 
 // component to deposit or withdraw money
-let TransactionAction = React.createClass({
+module.exports = React.createClass({
 
   propTypes: {
     currency: React.PropTypes.string,
@@ -144,5 +144,3 @@ let TransactionAction = React.createClass({
   }
 
 })
-
-module.exports = TransactionAction

@@ -5,7 +5,7 @@ let moment = require('moment')
 let accounting = require('accounting')
 
 // display one transaction
-let TransactionItem = React.createClass({
+module.exports = React.createClass({
 
   propTypes: {
     currency: React.PropTypes.string,
@@ -30,5 +30,3 @@ let TransactionItem = React.createClass({
   }
 
 })
-
-module.exports = TransactionItem

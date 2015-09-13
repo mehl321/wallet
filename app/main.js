@@ -3,5 +3,5 @@ var App = require('./components/App');
 
 React.render(
   <App />,
-  document.getElementById('wallet-app')
+  document.getElementById('root')
 );

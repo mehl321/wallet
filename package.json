@@ -3,11 +3,16 @@
   "version": "0.0.0",
   "description": "A simple wallet webapp",
   "main": "app/main.js",
-  "author": "Guilhem Soulas",
+  "author": "Guilhem Soulas <g@soulas.net>",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mehl321/wallet.git"
+  },
   "license": "MIT",
   "scripts": {
-    "watch": "watchify -v -d -t babelify app/main.js --extension=.jsx -o public/compiled.js",
-    "build": "npm run test && NODE_ENV=production browserify -t babelify --extension=.jsx app/main.js | uglifyjs > public/compiled.js",
+    "watch": "webpack-dev-server --hot",
+    "build": "npm run test && NODE_ENV=production webpack -p",
     "test": "standard app/**/*.js*"
   },
   "dependencies": {
@@ -21,12 +26,15 @@
     "standard": "5.2.1"
   },
   "devDependencies": {
-    "babelify": "6.2.0",
-    "browserify": "11.0.1",
-    "uglify-js": "2.4.24",
-    "watchify": "3.3.1"
+    "babel-core": "5.8.23",
+    "babel-loader": "5.3.2",
+    "react-hot-loader": "1.3.0",
+    "webpack": "1.12.1",
+    "webpack-dev-server": "1.10.1"
   },
   "standard": {
-    "global": [ "localStorage" ]
+    "global": [
+      "localStorage"
+    ]
   }
 }
